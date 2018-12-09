@@ -7,7 +7,7 @@ import { map, switchMap, catchError } from 'rxjs/operators';
 import * as fromUsers from '../store/reducers/users';
 import * as userActions from '../store/actions/users';
 import * as fromServices from '../services/user.service';
-import { User } from '../models/user';
+import { User, RemoveUserResponse } from '../models/user';
 
 @Injectable()
 export class UserEffects {
@@ -31,13 +31,23 @@ export class UserEffects {
   @Effect()
   addUser$ = this.actions$.ofType(userActions.ADD_USER_REQUEST).pipe(
     switchMap((action: userActions.AddUserRequest) => {
-      return (
-        this.userService.addUser(action.payload).pipe(
-          map(newUser => {
-            return new userActions.AddUserSuccess(newUser);
-          }),
-          catchError(error => of(new userActions.AddUserFailure(error)))
-        )
+      return this.userService.addUser(action.payload).pipe(
+        map(newUser => {
+          return new userActions.AddUserSuccess(newUser);
+        }),
+        catchError(error => of(new userActions.AddUserFailure(error)))
+      );
+    })
+  );
+
+  @Effect()
+  removeUser$ = this.actions$.ofType(userActions.REMOVE_USER_REQUEST).pipe(
+    switchMap((action: userActions.RemoveUserRequest) => {
+      return this.userService.removeUser(action.payload).pipe(
+        map((callback: RemoveUserResponse) => {
+          return new userActions.RemoveUserSuccess(callback.id);
+        }),
+        catchError(error => of(new userActions.RemoveUserFailure(error)))
       );
     })
   );

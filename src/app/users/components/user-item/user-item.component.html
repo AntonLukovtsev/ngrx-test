@@ -1,1 +1,10 @@
-<mat-list-item role="listitem">{{ user?.name }}</mat-list-item>
+<div class="user_item">
+  <mat-list-item role="listitem">
+    <span>{{ user?.name }}</span>
+  </mat-list-item>
+  <button
+    mat-icon-button
+    (click)="removeUser()">
+    <i class="material-icons">delete</i>
+  </button>
+</div>

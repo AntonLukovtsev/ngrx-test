@@ -28,4 +28,8 @@ export class UsersComponent implements OnInit {
   addUser(user) {
     this.store.dispatch(new userActions.AddUserRequest(user));
   }
+
+  removeUser(userId) {
+    this.store.dispatch(new userActions.RemoveUserRequest(userId));
+  }
 }

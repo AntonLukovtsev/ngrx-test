@@ -4,7 +4,9 @@ import {
   Input,
   AfterViewInit,
   HostBinding,
-  AfterViewChecked
+  AfterViewChecked,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { User } from '../../models/user';
 
@@ -15,6 +17,7 @@ import { User } from '../../models/user';
 })
 export class UserListComponent implements OnInit {
   @Input() users: User[];
+  @Output() removeUserEvent = new EventEmitter();
   @HostBinding('style.height') height: string;
 
   constructor() {
@@ -22,4 +25,8 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  removeUser(userId) {
+    this.removeUserEvent.emit(userId);
+  }
 }

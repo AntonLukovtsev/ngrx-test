@@ -49,6 +49,26 @@ export function reducer(state = initialState, action: userAction.Action) {
         ...error
       };
     }
+    case userAction.REMOVE_USER_REQUEST: {
+      return {
+        ...state
+      };
+    }
+    case userAction.REMOVE_USER_SUCCESS: {
+      const userId: string = action.payload;
+      console.log(state.users.filter((item, index) => index !== state.users.findIndex(i => i._id === userId)), userId);
+      return {
+        ...state,
+        users: state.users.filter((item, index) => index !== state.users.findIndex(i => i._id === userId))
+      };
+    }
+    case userAction.REMOVE_USER_FAILURE: {
+      const error: any = action.payload;
+      return {
+        ...state,
+        ...error
+      };
+    }
     default:
       return state;
   }

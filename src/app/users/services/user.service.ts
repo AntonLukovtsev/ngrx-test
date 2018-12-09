@@ -21,4 +21,10 @@ export class UserService {
       .post<User>(`api/user`, user)
       .pipe(catchError((error: any) => throwError(error.json())));
   }
+
+  removeUser(userId): Observable<any> {
+    return this.http
+      .delete(`api/user/${userId}`)
+      .pipe(catchError((error: any) => throwError(error.json())));
+  }
 }
