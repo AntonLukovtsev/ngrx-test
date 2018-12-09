@@ -1,1 +1,2 @@
-<app-user-list [users]="users$ | async"></app-user-list>
+<!-- <app-user-list [_users]="users$ | async"></app-user-list> -->
+<div *ngFor="let u of users$ | async">{{u?.name}}</div>

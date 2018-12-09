@@ -11,11 +11,23 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: userAction.Action) {
   switch (action.type) {
-    case userAction.GET_USERS: {
+    case userAction.GET_USERS_REQUEST: {
+      return {
+        ...state
+      };
+    }
+    case userAction.GET_USERS_SUCCESS: {
       const newUsers: User[] = action.payload;
       return {
         ...state,
         users: [...state.users, ...newUsers]
+      };
+    }
+    case userAction.GET_USERS_FAILURE: {
+      const error: any = action.payload;
+      return {
+        ...state,
+        ...error
       };
     }
     default:

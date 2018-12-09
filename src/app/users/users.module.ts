@@ -7,7 +7,10 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserItemComponent } from './components/user-item/user-item.component';
 import { MatListModule } from '@angular/material/list';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from '../store/reducers';
+import { reducers, metaReducers } from './store/reducers';
+import { EffectsModule, Actions } from '@ngrx/effects';
+import { UserEffects } from './effects/user.effects';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [UsersComponent, UserListComponent, UserItemComponent],
@@ -15,7 +18,9 @@ import { reducers, metaReducers } from '../store/reducers';
     CommonModule,
     UsersRoutingModule,
     MatListModule,
-    StoreModule.forFeature(reducers, { metaReducers })
-  ]
+    StoreModule.forFeature('users', reducers, { metaReducers }),
+    EffectsModule.forFeature([UserEffects])
+  ],
+  providers: [UserEffects, UserService, Actions]
 })
 export class UsersModule {}

@@ -12,6 +12,9 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AllInterceptor } from './services/httpInterceptor.service';
+import { EffectsModule } from '@ngrx/effects';
 
 export const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -28,14 +31,18 @@ export const MATERIAL_MODULES = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     ...MATERIAL_MODULES,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
       maxAge: 5
-    })
+    }),
+    EffectsModule.forRoot([])
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AllInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

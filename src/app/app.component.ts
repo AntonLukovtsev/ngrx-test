@@ -22,9 +22,7 @@ export class AppComponent {
   }
 
   onAdd() {
-    console.log('HELLO');
     this.films$.pipe(take(1)).subscribe(films => {
-      console.log('hello');
       this.store.dispatch(
         new filmAction.AddOne({
           id: films.length,
