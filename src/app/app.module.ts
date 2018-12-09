@@ -15,6 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AllInterceptor } from './services/httpInterceptor.service';
 import { EffectsModule } from '@ngrx/effects';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './shared.module';
 
 export const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -33,6 +35,7 @@ export const MATERIAL_MODULES = [
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    SharedModule,
     ...MATERIAL_MODULES,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({

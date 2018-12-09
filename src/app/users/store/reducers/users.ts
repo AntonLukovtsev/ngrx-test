@@ -30,6 +30,25 @@ export function reducer(state = initialState, action: userAction.Action) {
         ...error
       };
     }
+    case userAction.ADD_USER_REQUEST: {
+      return {
+        ...state
+      };
+    }
+    case userAction.ADD_USER_SUCCESS: {
+      const newUser: User = action.payload;
+      return {
+        ...state,
+        users: [...state.users, newUser]
+      };
+    }
+    case userAction.ADD_USER_FAILURE: {
+      const error: any = action.payload;
+      return {
+        ...state,
+        ...error
+      };
+    }
     default:
       return state;
   }

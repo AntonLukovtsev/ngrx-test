@@ -1,0 +1,6 @@
+<form class="user_form" [formGroup]="userForm">
+  <mat-form-field>
+    <input required matInput placeholder="Username" formControlName="name" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="addUser()">Add</button>
+</form>

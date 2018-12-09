@@ -1,2 +1,4 @@
-<!-- <app-user-list [_users]="users$ | async"></app-user-list> -->
-<div *ngFor="let u of users$ | async">{{u?.name}}</div>
+<div class="users_container">
+  <app-user-list [users]="users$ | async"></app-user-list>
+  <app-user-add (userAddValid)="addUser($event)"></app-user-add>
+</div>

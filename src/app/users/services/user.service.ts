@@ -15,4 +15,10 @@ export class UserService {
       .get<User[]>(`api/users`)
       .pipe(catchError((error: any) => throwError(error.json())));
   }
+
+  addUser(user): Observable<User> {
+    return this.http
+      .post<User>(`api/user`, user)
+      .pipe(catchError((error: any) => throwError(error.json())));
+  }
 }

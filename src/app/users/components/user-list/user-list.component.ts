@@ -1,4 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  AfterViewInit,
+  HostBinding,
+  AfterViewChecked
+} from '@angular/core';
 import { User } from '../../models/user';
 
 @Component({
@@ -7,14 +14,12 @@ import { User } from '../../models/user';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  users: User[] = [];
+  @Input() users: User[];
+  @HostBinding('style.height') height: string;
 
-  @Input()
-  set _users(newValue) {
-    console.log('newValue: ', newValue);
+  constructor() {
+    this.height = '100%';
   }
-
-  constructor() {}
 
   ngOnInit() {}
 }

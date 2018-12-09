@@ -1,9 +1,14 @@
 import { Action } from '@ngrx/store';
 import { User } from '../../models/user';
+
 export const GET_USERS_REQUEST = '[Users] Get Users Request';
 export const GET_USERS_SUCCESS = '[Users] Get Users Success';
 export const GET_USERS_FAILURE = '[Users] Get Users Failure';
-export class GetUsers implements Action {
+
+export const ADD_USER_REQUEST = '[User] Add Users Request';
+export const ADD_USER_SUCCESS = '[User] Add Users Success';
+export const ADD_USER_FAILURE = '[User] Add Users Failure';
+export class GetUsersRequest implements Action {
   readonly type = GET_USERS_REQUEST;
   constructor() {}
 }
@@ -15,4 +20,24 @@ export class GetUsersFailure implements Action {
   readonly type = GET_USERS_FAILURE;
   constructor(public payload: any) {}
 }
-export type Action = GetUsers | GetUsersSuccess | GetUsersFailure;
+
+export class AddUserRequest implements Action {
+  readonly type = ADD_USER_REQUEST;
+  constructor(public payload: User) {}
+}
+export class AddUserSuccess implements Action {
+  readonly type = ADD_USER_SUCCESS;
+  constructor(public payload: User) {}
+}
+export class AddUserFailure implements Action {
+  readonly type = ADD_USER_FAILURE;
+  constructor(public payload: any) {}
+}
+
+export type Action =
+  | GetUsersRequest
+  | GetUsersSuccess
+  | GetUsersFailure
+  | AddUserRequest
+  | AddUserSuccess
+  | AddUserFailure;
