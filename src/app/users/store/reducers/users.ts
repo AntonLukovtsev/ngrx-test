@@ -56,10 +56,12 @@ export function reducer(state = initialState, action: userAction.Action) {
     }
     case userAction.REMOVE_USER_SUCCESS: {
       const userId: string = action.payload;
-      console.log(state.users.filter((item, index) => index !== state.users.findIndex(i => i._id === userId)), userId);
       return {
         ...state,
-        users: state.users.filter((item, index) => index !== state.users.findIndex(i => i._id === userId))
+        users: state.users.filter(
+          (item, index) =>
+            index !== state.users.findIndex(i => i._id === userId)
+        )
       };
     }
     case userAction.REMOVE_USER_FAILURE: {
