@@ -40,6 +40,19 @@ export class UserEffects {
     })
   );
 
+
+  @Effect()
+  editUser$ = this.actions$.ofType(userActions.EDIT_USER_REQUEST).pipe(
+    switchMap((action: userActions.EditUserRequest) => {
+      return this.userService.editUser(action.payload).pipe(
+        map(newUser => {
+          return new userActions.EditUserSuccess(newUser);
+        }),
+        catchError(error => of(new userActions.EditUserFailure(error)))
+      );
+    })
+  );
+
   @Effect()
   removeUser$ = this.actions$.ofType(userActions.REMOVE_USER_REQUEST).pipe(
     switchMap((action: userActions.RemoveUserRequest) => {

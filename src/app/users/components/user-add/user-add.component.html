@@ -2,5 +2,5 @@
   <mat-form-field>
     <input required matInput placeholder="Username" formControlName="name" />
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="addUser()">Add</button>
+  <button mat-raised-button color="primary" (click)="label === 'Add' ? addUser() : editUser()">{{label}}</button>
 </form>

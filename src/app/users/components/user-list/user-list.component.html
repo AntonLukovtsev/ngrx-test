@@ -2,6 +2,7 @@
   class="user_list"
   role="list">
   <app-user-item
+    (editUserEvent)="editUser($event)"
     (removeUserEvent)="removeUser($event)"
     *ngFor="let user of users"
     [user]="user"></app-user-item>

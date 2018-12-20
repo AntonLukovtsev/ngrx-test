@@ -1,10 +1,17 @@
 <div class="user_item">
-  <mat-list-item role="listitem">
-    <span>{{ user?.name }}</span>
-  </mat-list-item>
-  <button
-    mat-icon-button
-    (click)="removeUser()">
-    <i class="material-icons">delete</i>
-  </button>
+    <mat-list-item role="listitem">
+        <span>{{ user?.name }}</span>
+    </mat-list-item>
+    <button
+        mat-icon-button
+        (click)="editUser(user)"
+    >
+        <i class="material-icons">edit</i>
+    </button>
+    <button
+        mat-icon-button
+        (click)="removeUser()"
+    >
+        <i class="material-icons">delete</i>
+    </button>
 </div>

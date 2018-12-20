@@ -1,6 +1,7 @@
 <div class="users_container">
   <app-user-list
+    (editUserEvent)="getUser($event)"
     (removeUserEvent)="removeUser($event)"
     [users]="users$ | async"></app-user-list>
-  <app-user-add (userAddValid)="addUser($event)"></app-user-add>
+  <app-user-add [user]="user" (userEditValid)="editUser($event)" (userAddValid)="addUser($event)"></app-user-add>
 </div>

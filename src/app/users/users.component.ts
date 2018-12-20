@@ -13,6 +13,9 @@ import { State } from './store/reducers/users';
 })
 export class UsersComponent implements OnInit {
   users$: Observable<User[]>;
+
+  user;
+
   constructor(private store: Store<fromUsers.State>) {
     this.users$ = store.select(fromUsers.getUsers).pipe(
       map(state => {
@@ -27,6 +30,14 @@ export class UsersComponent implements OnInit {
 
   addUser(user) {
     this.store.dispatch(new userActions.AddUserRequest(user));
+  }
+
+  getUser(user) {
+    this.user = user;
+  }
+
+  editUser(user) {
+    this.store.dispatch(new userActions.EditUserRequest(user));
   }
 
   removeUser(userId) {

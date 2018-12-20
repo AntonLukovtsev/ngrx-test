@@ -12,6 +12,10 @@ export const ADD_USER_FAILURE = '[User] Add Users Failure';
 export const REMOVE_USER_REQUEST = '[User] Remove Users Request';
 export const REMOVE_USER_SUCCESS = '[User] Remove Users Success';
 export const REMOVE_USER_FAILURE = '[User] Remove Users Failure';
+
+export const EDIT_USER_REQUEST = '[User] Edit Users Request';
+export const EDIT_USER_SUCCESS = '[User] Edit Users Success';
+export const EDIT_USER_FAILURE = '[User] Edit Users Failure';
 export class GetUsersRequest implements Action {
   readonly type = GET_USERS_REQUEST;
   constructor() {}
@@ -51,6 +55,20 @@ export class RemoveUserFailure implements Action {
   constructor(public payload: any) {}
 }
 
+
+export class EditUserRequest implements Action {
+  readonly type = EDIT_USER_REQUEST;
+  constructor(public payload: User) {}
+}
+export class EditUserSuccess implements Action {
+  readonly type = EDIT_USER_SUCCESS;
+  constructor(public payload: User) {}
+}
+export class EditUserFailure implements Action {
+  readonly type = EDIT_USER_FAILURE;
+  constructor(public payload: any) {}
+}
+
 export type Action =
   | GetUsersRequest
   | GetUsersSuccess
@@ -60,4 +78,7 @@ export type Action =
   | AddUserFailure
   | RemoveUserRequest
   | RemoveUserSuccess
-  | RemoveUserFailure;
+  | RemoveUserFailure
+  | EditUserRequest
+  | EditUserSuccess
+  | EditUserFailure;

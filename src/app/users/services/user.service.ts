@@ -22,6 +22,12 @@ export class UserService {
       .pipe(catchError((error: any) => throwError(error.json())));
   }
 
+  editUser(user): Observable<User> {
+    return this.http
+      .put<User>(`api/user`, user)
+      .pipe(catchError((error: any) => throwError(error.json())));
+  }
+
   removeUser(userId): Observable<any> {
     return this.http
       .delete(`api/user/${userId}`)

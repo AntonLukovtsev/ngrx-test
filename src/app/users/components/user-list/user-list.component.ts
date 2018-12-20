@@ -17,6 +17,7 @@ import { User } from '../../models/user';
 })
 export class UserListComponent implements OnInit {
   @Input() users: User[];
+  @Output() editUserEvent = new EventEmitter();
   @Output() removeUserEvent = new EventEmitter();
   @HostBinding('style.height') height: string;
 
@@ -25,6 +26,10 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  editUser(user) {
+    this.editUserEvent.emit(user);
+  }
 
   removeUser(userId) {
     this.removeUserEvent.emit(userId);
